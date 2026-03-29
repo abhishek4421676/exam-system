@@ -32,7 +32,35 @@ A **production-ready, enterprise-grade backend and frontend system** for conduct
 
 ---
 
-## 🔐 Default Demo Credentials
+## � How It Works (Application Workflow)
+
+### 1. Adding Users (Invitations)
+- **Tenant Admins** navigate to the "Invite Users" dashboard to send email invitations to Teachers and Students.
+- The invited users receive a unique link. When they click the link and log in via **Google OAuth**, they are securely added directly to the Admin's isolated organizational tenant.
+
+### 2. Creating an Exam
+- **Teachers or Admins** go to "Manage Exams" to create a new exam, configuring the title, duration, total marks, and the active time window.
+- The creator then adds questions from the **Question Bank** (supporting MCQ, Numeric, and Descriptive types) to the exam.
+- Once the exam is fully set up, the Teacher changes the status to **Published**.
+
+### 3. Assigning the Exam
+- From the "Exam Assignments" panel, the **Teacher/Admin** selects the newly published exam and assigns it to specific **Students** currently enrolled in the organization.
+- Only assigned students will be able to see and attempt the exam.
+
+### 4. Taking the Exam (Student)
+- A **Student** logs into their dashboard and sees their assigned upcoming, active, and completed exams.
+- The student clicks **Start Exam**, which begins a strict, un-stoppable server-side countdown timer.
+- As the student selects MCQ options, types numeric values, or writes descriptive essays, their answers are **auto-saved** to the database in real-time.
+- When finished (or when the timer runs out), the exam is submitted.
+
+### 5. Evaluation & Results
+- **Auto-Grading:** The system instantly evaluates all MCQ and Numeric questions, calculating positive and negative marks accurately.
+- **Manual Grading:** If the exam has Descriptive questions, the student's result will show as "Evaluation Pending". The **Teacher** logs in, goes to the "Evaluate Descriptive" dashboard, reviews the student's text, and awards marks.
+- Once all questions are graded, the student can view their **Detailed Exam Result** with question-by-question breakdowns and exact scores.
+
+---
+
+## �🔐 Default Demo Credentials
 
 The following demo users have been pre-seeded in the database for testing:
 
