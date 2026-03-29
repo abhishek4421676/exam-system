@@ -80,6 +80,11 @@ nano .env # Configure DB_USER, DB_PASSWORD, JWT_SECRET, and GOOGLE_CLIENT_ID
 
 # Start development server
 npm run dev
+
+### 3. Seed Demo Users
+To test the application, you can seed the database with the default admin, teacher, and student accounts.
+```bash
+node seed-users.js
 ```
 
 ### 3. Frontend Setup
