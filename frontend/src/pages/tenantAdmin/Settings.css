@@ -1,0 +1,28 @@
+.tenant-settings-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.tenant-settings-page .page-header {
+  margin-bottom: 1rem;
+}
+
+.tenant-settings-page h1 {
+  margin: 0;
+}
+
+.tenant-settings-card {
+  max-width: 720px;
+  padding: 1.25rem;
+}
+
+.tenant-settings-card .form-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tenant-settings-card .btn {
+  margin-top: 0.25rem;
+}

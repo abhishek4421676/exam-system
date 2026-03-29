@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Debug</title>
+</head>
+<body>
+    <h1>Authentication Debugging Tool</h1>
+    <div id="status"></div>
+    <button onclick="checkAuth()">Check Current Auth Status</button>
+    <button onclick="clearAuth()">Clear Auth (Logout)</button>
+    <button onclick="testAPI()">Test API Request</button>
+    
+    <pre id="output"></pre>
+
+    <script>
+        function log(msg) {
+            const output = document.getElementById('output');
+            output.textContent += msg + '\n';
+        }
+
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            log('=== Auth Status ===');
+            log('Token stored: ' + (token ? 'YES' : 'NO'));
+            log('User stored: ' + (user ? 'YES' : 'NO'));
+            
+            if (token) {
+                log('\nToken (first 50 chars): ' + token.substring(0, 50) + '...');
+                
+                // Decode JWT
+                try {
+                    const parts = token.split('.');
+                    if (parts.length === 3) {
+                        const payload = JSON.parse(atob(parts[1]));
+                        log('\nToken Payload:');
+                        log(JSON.stringify(payload, null, 2));
+                    }
+                } catch (e) {
+                    log('Error decoding token: ' + e.message);
+                }
+            }
+            
+            if (user) {
+                const userData = JSON.parse(user);
+                log('\nUser Data:');
+                log(JSON.stringify(userData, null, 2));
+            }
+        }
+
+        function clearAuth() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            log('Auth cleared. Please refresh and login again.');
+        }
+
+        function testAPI() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                log('ERROR: No token found. Please login first.');
+                return;
+            }
+
+            log('=== Testing API Request ===');
+            log('Attempting to create exam...');
+
+            fetch('http://localhost:3000/api/exams', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                    'x-tenant-subdomain': 'default'
+                },
+                body: JSON.stringify({
+                    title: 'Test Exam',
+                    description: 'Test',
+                    duration: '60',
+                    total_marks: '100'
+                })
+            })
+            .then(res => {
+                log('\nResponse Status: ' + res.status);
+                return res.json();
+            })
+            .then(data => {
+                log('Response Data:');
+                log(JSON.stringify(data, null, 2));
+            })
+            .catch(err => {
+                log('Error: ' + err.message);
+            });
+        }
+    </script>
+</body>
+</html>

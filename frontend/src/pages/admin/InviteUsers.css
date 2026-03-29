@@ -1,0 +1,396 @@
+.invite-users-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.page-header .subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.actions-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.invite-form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+}
+
+.invite-form-card h3 {
+  margin-top: 0;
+  color: var(--text-primary);
+}
+
+.invite-form-card form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.invite-form-card .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.invite-form-card label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.invite-form-card .form-control,
+.invite-form-card .form-select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.invite-form-card .form-control:focus,
+.invite-form-card .form-select:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+.invite-form-card .form-text {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn,
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+}
+
+.btn-outline-secondary,
+.btn-outline-danger {
+  border: 1px solid;
+  background-color: transparent;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+  margin: 0 3px;
+  transition: var(--transition);
+}
+
+.btn-outline-secondary {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.btn-outline-danger {
+  color: var(--danger-color);
+  border-color: color-mix(in srgb, var(--danger-color) 60%, var(--border-color));
+}
+
+.btn-outline-danger:hover {
+  background-color: color-mix(in srgb, var(--danger-color) 15%, var(--bg-color));
+}
+
+.info-box {
+  grid-column: 1 / -1;
+  background-color: color-mix(in srgb, var(--info-color) 14%, var(--bg-color));
+  border-left: 4px solid var(--info-color);
+  padding: 15px;
+  border-radius: var(--radius);
+  margin-top: 15px;
+}
+
+.info-box strong {
+  color: var(--text-primary);
+}
+
+.info-box ul {
+  margin: 10px 0 0 20px;
+  padding-left: 0;
+}
+
+.info-box li {
+  margin: 5px 0;
+  color: var(--text-secondary);
+}
+
+.invitations-section {
+  margin-bottom: 30px;
+}
+
+.invitations-section h3 {
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.invitations-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+}
+
+.invitations-table thead {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.invitations-table th {
+  padding: 15px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.invitations-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.invitations-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.invitations-table tbody tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+.invitations-table tbody tr.status-accepted {
+  opacity: 0.86;
+}
+
+.email-cell {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.role-badge {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.role-badge.text-danger {
+  color: var(--danger-color);
+}
+
+.role-badge.text-primary {
+  color: var(--primary-color);
+}
+
+.role-badge.text-success {
+  color: var(--success-color);
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge-warning {
+  background-color: color-mix(in srgb, var(--warning-color) 20%, var(--bg-color));
+  color: var(--warning-color);
+}
+
+.badge-success {
+  background-color: color-mix(in srgb, var(--success-color) 20%, var(--bg-color));
+  color: var(--success-color);
+}
+
+.badge-danger {
+  background-color: color-mix(in srgb, var(--danger-color) 20%, var(--bg-color));
+  color: var(--danger-color);
+}
+
+.badge-secondary {
+  background-color: color-mix(in srgb, var(--text-tertiary) 25%, var(--bg-color));
+  color: var(--text-secondary);
+}
+
+.btn-action {
+  padding: 6px 12px;
+  margin: 0 3px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  border: 1px solid;
+  background-color: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.invitations-table td:last-child {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 30px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+}
+
+.empty-state p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.empty-state p:first-child {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+.alert {
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  border-left: 4px solid;
+}
+
+.alert-danger {
+  background-color: color-mix(in srgb, var(--danger-color) 14%, var(--bg-color));
+  color: var(--danger-color);
+  border-color: color-mix(in srgb, var(--danger-color) 45%, var(--border-color));
+}
+
+.alert-success {
+  background-color: color-mix(in srgb, var(--success-color) 14%, var(--bg-color));
+  color: var(--success-color);
+  border-color: color-mix(in srgb, var(--success-color) 45%, var(--border-color));
+}
+
+.help-section {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.help-section h4 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+.help-section ol {
+  margin-left: 20px;
+  color: var(--text-secondary);
+}
+
+.help-section li {
+  margin: 10px 0;
+}
+
+.help-section .warning {
+  background-color: color-mix(in srgb, var(--warning-color) 20%, var(--bg-color));
+  border-left: 4px solid var(--warning-color);
+  padding: 12px;
+  border-radius: var(--radius);
+  margin-top: 15px;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.access-denied {
+  padding: 60px 30px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.access-denied h2 {
+  color: var(--danger-color);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .invite-users-container {
+    padding: 20px;
+  }
+
+  .invite-form-card form {
+    grid-template-columns: 1fr;
+  }
+
+  .invitations-table {
+    font-size: 0.9rem;
+  }
+
+  .invitations-table th,
+  .invitations-table td {
+    padding: 10px 8px;
+  }
+
+  .btn-action {
+    display: block;
+    width: 100%;
+    margin: 3px 0;
+  }
+}
