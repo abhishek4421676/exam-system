@@ -1,11 +1,18 @@
 const winston = require('winston');
 const path = require('path');
 
-// Create logs directory if it doesn't exist
+
 const fs = require('fs');
 const logsDir = path.join(__dirname, '../logs');
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir);
+
+// Detect if running in a read-only/serverless environment
+let canWriteLogs = true;
+try {
+  if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir);
+  }
+} catch (err) {
+  canWriteLogs = false;
 }
 
 // Define log format
@@ -29,42 +36,53 @@ const consoleFormat = winston.format.combine(
   })
 );
 
-// Create logger
-const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
-  format: logFormat,
-  defaultMeta: { service: 'exam-system' },
-  transports: [
-    // Write all logs to combined.log
-    new winston.transports.File({
-      filename: path.join(logsDir, 'combined.log'),
-      maxsize: 5242880, // 5MB
-      maxFiles: 5,
-    }),
-    // Write error logs to error.log
-    new winston.transports.File({
-      filename: path.join(logsDir, 'error.log'),
-      level: 'error',
-      maxsize: 5242880,
-      maxFiles: 5,
-    }),
-  ],
-  // Handle uncaught exceptions
-  exceptionHandlers: [
-    new winston.transports.File({
-      filename: path.join(logsDir, 'exceptions.log'),
-    }),
-  ],
-  // Handle unhandled rejections
-  rejectionHandlers: [
-    new winston.transports.File({
-      filename: path.join(logsDir, 'rejections.log'),
-    }),
-  ],
-});
 
-// Add console transport in development
-if (process.env.NODE_ENV !== 'production') {
+let logger;
+if (canWriteLogs) {
+  logger = winston.createLogger({
+    level: process.env.LOG_LEVEL || 'info',
+    format: logFormat,
+    defaultMeta: { service: 'exam-system' },
+    transports: [
+      new winston.transports.File({
+        filename: path.join(logsDir, 'combined.log'),
+        maxsize: 5242880, // 5MB
+        maxFiles: 5,
+      }),
+      new winston.transports.File({
+        filename: path.join(logsDir, 'error.log'),
+        level: 'error',
+        maxsize: 5242880,
+        maxFiles: 5,
+      }),
+    ],
+    exceptionHandlers: [
+      new winston.transports.File({
+        filename: path.join(logsDir, 'exceptions.log'),
+      }),
+    ],
+    rejectionHandlers: [
+      new winston.transports.File({
+        filename: path.join(logsDir, 'rejections.log'),
+      }),
+    ],
+  });
+} else {
+  // Fallback: Console-only logger for read-only/serverless environments
+  logger = winston.createLogger({
+    level: process.env.LOG_LEVEL || 'info',
+    format: consoleFormat,
+    defaultMeta: { service: 'exam-system' },
+    transports: [
+      new winston.transports.Console({
+        format: consoleFormat,
+      }),
+    ],
+  });
+}
+
+// Add console transport in development (if not already present)
+if (process.env.NODE_ENV !== 'production' && canWriteLogs) {
   logger.add(
     new winston.transports.Console({
       format: consoleFormat,
